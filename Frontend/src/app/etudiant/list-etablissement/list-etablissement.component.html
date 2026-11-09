@@ -1,0 +1,76 @@
+<div class="app-layout">
+  <!-- Sidebar gauche -->
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+  <!-- Contenu principal -->
+  <div class="main-content-area">
+    <!-- Contenu -->
+    <div class="content-wrapper">
+      <!-- Navbar avec bouton toggle -->
+      <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+
+      <!-- Titre -->
+      <h1 class="page-title">Établissements</h1>
+
+      <!-- Zone de recherche + filtres alignés -->
+      <div class="zone-filtrage">
+        <div class="barre-recherche-filtrage">
+          <!-- Groupe recherche + bouton -->
+          <div class="groupe-recherche">
+            <input
+              type="text"
+              [(ngModel)]="currentSearchQuery"
+              (keyup.enter)="handleSearch(currentSearchQuery)"
+              placeholder="Rechercher un établissement..." />
+
+            <button (click)="handleSearch(currentSearchQuery)">
+              Rechercher
+            </button>
+          </div>
+
+          <!-- Sélecteur de pays -->
+          <select [(ngModel)]="selectedPays" (change)="applySearchAndFilters()">
+            <option value="">-- Tous les pays --</option>
+            <option *ngFor="let pays of paysDisponibles" [value]="pays">{{ pays }}</option>
+          </select>
+
+          <!-- Sélecteur de type -->
+          <select [(ngModel)]="selectedType" (change)="applySearchAndFilters()">
+            <option value="">-- Tous les types--</option>
+            <option *ngFor="let type of typeDisponibles" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Liste des établissements -->
+      <div class="etablissements-list">
+        <div
+          class="etablissement-card"
+          *ngFor="let etab of filteredEtablissements | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+          <img [src]="etab.imageUrl" alt="Logo" class="etab-logo" />
+
+          <div class="etab-info">
+            <h3>{{ etab.nom }}</h3>
+            <p class="details">{{ etab.nomAbr }}, {{ etab.pays }}</p>
+            <p class="desc">{{ etab.description }}</p>
+
+            <div class="actions">
+              <button class="favori-btn" (click)="toggleFavori(etab.id)" [attr.aria-label]="etab.isFavori ? 'Retirer des favoris' : 'Ajouter aux favoris'">
+                <span class="coeur" [class.favori]="etab.isFavori">&#10084;</span>
+              </button>
+              <a [routerLink]="['/detail-etablissement', etab.id]" class="btn btn-primary">
+                Voir détails
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+    </div> <!-- end of content-wrapper -->
+  </div> <!-- end of main-content-area -->
+
+  <!-- Footer -->
+  <app-footer-etudiant></app-footer-etudiant>
+</div> <!-- end of app-layout -->

@@ -1,0 +1,16 @@
+<!-- Sidebar gauche -->
+<app-slidebar-admin-fix *ngIf="sidebarVisible"></app-slidebar-admin-fix>
+
+<!-- Contenu principal -->
+<div class="main-content-area" style="margin-top: 0 !important; padding-top: 0 !important;">
+
+  <!-- Navbar -->
+  <app-navbar-admin (toggleGauche)="toggleSidebar()"></app-navbar-admin>
+  <div class="content-wrapper">
+    <!-- Titre et bienvenue -->
+    <h1 class="page-title">Tableau de Bord</h1>
+  </div>
+</div>
+
+<!-- Footer -->
+<app-footer-admin></app-footer-admin>

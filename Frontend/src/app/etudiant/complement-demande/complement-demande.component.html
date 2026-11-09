@@ -1,0 +1,41 @@
+<div class="app-layout">
+  <!-- Sidebar gauche -->
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+  <!-- Contenu principal -->
+  <div class="main-content-area">
+    <!-- Navbar -->
+    <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+
+    <!-- Titre -->
+    <h1 class="page-title">Compléter votre demande</h1>
+
+    <!-- Formulaire -->
+    <div class="complement-container">
+
+      <div class="remarque-box" *ngIf="remarque">
+        <strong>Remarque :</strong>
+        <p>{{ remarque }}</p>
+      </div>
+
+      <form [formGroup]="complementForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="justificatif">Ajouter le justificatif demandé <span class="required">*</span></label>
+          <input type="file" id="justificatif" (change)="onFileChange($event)" required />
+        </div>
+
+        <div class="form-group">
+          <label for="commentaire">Commentaire (facultatif)</label>
+          <textarea id="commentaire" formControlName="commentaire" rows="4"></textarea>
+        </div>
+
+        <div class="form-submit-container">
+          <button type="submit" class="btn-jaune">Envoyer le complément</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <app-footer-etudiant></app-footer-etudiant>
+</div>

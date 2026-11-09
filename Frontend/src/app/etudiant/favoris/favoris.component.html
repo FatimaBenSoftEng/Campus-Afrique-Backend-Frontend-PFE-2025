@@ -1,0 +1,40 @@
+<div class="app-layout">
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+  <div class="main-content-area">
+    <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+
+    <div class="content-wrapper">
+        <h1 class="page-title">Mes Favoris</h1>
+
+        <div class="favoris-container">
+          <!-- Message si aucun favori -->
+          <div *ngIf="favoris.length === 0" class="empty-msg text-center mt-4">
+            Aucun établissement ajouté aux favoris.
+          </div>
+
+          <!-- Liste des favoris sous forme de cartes -->
+          <div class="etablissements-list" *ngIf="favoris.length > 0">
+            <div class="etablissement-card" *ngFor="let etab of favoris">
+              <img [src]="etab.imageUrl" alt="Logo" class="etab-logo">
+              <div class="etab-info">
+                <h3>{{ etab.nom }}</h3>
+                <p class="desc">{{ etab.description }}</p>
+                <p class="details">{{ etab.nomAbr }},{{ etab.pays }}</p>
+                <div class="actions">
+                  <button class="favori-btn" (click)="retirerFavori(etab.id)" [attr.aria-label]="etab.isFavori ? 'Retirer des favoris' : 'Ajouter aux favoris'">
+                    <span class="coeur" [class.favori]="etab.isFavori">&#10084;</span>
+                  </button>
+                  <a [routerLink]="['/detail-etablissement', etab.id]" class="voir-btn">
+                    Voir détails
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <app-footer-etudiant></app-footer-etudiant>
+</div>

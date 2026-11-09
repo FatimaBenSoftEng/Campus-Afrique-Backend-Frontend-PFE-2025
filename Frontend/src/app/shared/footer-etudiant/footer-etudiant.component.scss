@@ -1,0 +1,134 @@
+// === Variables couleurs cohérentes avec sidebar ===
+$footer-bg: #0C2B4B;
+$footer-accent: #F3BD00;
+$footer-text: #ffffff;
+$footer-muted: rgba(255, 255, 255, 0.7);
+$footer-font: 'Segoe UI', 'Roboto', sans-serif;
+
+.footer {
+  background: linear-gradient(135deg, darken($footer-bg, 5%) 0%, $footer-bg 100%);
+  color: $footer-text;
+  font-family: $footer-font;
+  width: 100%;
+  min-height: 60px;
+  height: 50%;
+  padding: 10px 0;
+  overflow: visible;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 20%),
+      radial-gradient(circle at 90% 80%, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 20%);
+    pointer-events: none;
+  }
+
+  .footer-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+    height: 60%;
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10;
+    position: relative;
+    width: 100%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, $footer-accent, transparent);
+    }
+  }
+
+  .footer-brand {
+    text-align: center;
+    padding-top: 5px;
+  }
+
+  .brand-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: $footer-text;
+    margin-bottom: 4px;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, $footer-accent, transparent);
+    }
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+    color: $footer-muted;
+    text-align: center;
+    line-height: 1.3;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    padding-top: 4px;
+    font-weight: 300;
+
+    &::before {
+      content: "©";
+      display: inline;
+      margin-right: 3px;
+    }
+  }
+}
+
+// ✅ Responsive
+@media (max-width: 768px) {
+  .footer {
+    padding: 8px 0 6px;
+    min-height: 60px;
+
+    .footer-container {
+      max-width: 95%;
+      padding: 0 15px;
+    }
+
+    .footer-content {
+      gap: 6px;
+      padding: 3px 0;
+    }
+
+    .brand-name {
+      font-size: 1.1rem;
+      margin-bottom: 3px;
+    }
+
+    .copyright {
+      font-size: 0.75rem;
+      padding-top: 3px;
+      line-height: 1.2;
+    }
+  }
+}

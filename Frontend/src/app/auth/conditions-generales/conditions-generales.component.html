@@ -1,0 +1,65 @@
+
+<app-navbar></app-navbar>
+<!-- Page Header -->
+<div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
+  <div class="container text-center">
+    <h1 class="display-4 text-white animated slideInDown mb-4">Conditions Générales</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a class="text-white" routerLink="/">Accueil</a></li>
+        <li class="breadcrumb-item text-primary active" aria-current="page">CGU</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- Contenu -->
+<div class="conditions-container">
+  <div class="conditions-card">
+    <h2>Conditions Générales d'Utilisation</h2>
+    <p class="last-update">Dernière mise à jour : {{ currentDate }}</p>
+
+    <div class="conditions-content">
+      <section>
+        <h3>1. Acceptation des conditions</h3>
+        <p>En utilisant ce service, vous acceptez pleinement et sans réserve les présentes conditions générales.</p>
+      </section>
+
+      <section>
+        <h3>2. Description du service</h3>
+        <p>Notre plateforme permet aux utilisateurs de [description de votre service].</p>
+      </section>
+
+      <section>
+        <h3>3. Inscription et compte</h3>
+        <p>Pour accéder à certaines fonctionnalités, vous devrez créer un compte avec une adresse email valide.</p>
+      </section>
+
+      <section>
+        <h3>4. Responsabilités</h3>
+        <p>L'utilisateur est responsable du maintien de la confidentialité de ses identifiants de connexion.</p>
+      </section>
+
+      <section>
+        <h3>5. Propriété intellectuelle</h3>
+        <p>Tous les contenus présents sur la plateforme sont protégés par les lois sur la propriété intellectuelle.</p>
+      </section>
+
+      <section>
+        <h3>6. Modification des CGU</h3>
+        <p>Nous nous réservons le droit de modifier ces conditions à tout moment. Les modifications prendront effet immédiatement après leur publication.</p>
+      </section>
+
+      <section>
+        <h3>7. Loi applicable</h3>
+        <p>Les présentes conditions sont régies par les lois françaises.</p>
+      </section>
+    </div>
+
+    <div class="actions">
+      <button routerLink="/sign" class="btn-accept">J'accepte les conditions</button>
+      <button routerLink="/" class="btn-decline">Refuser</button>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

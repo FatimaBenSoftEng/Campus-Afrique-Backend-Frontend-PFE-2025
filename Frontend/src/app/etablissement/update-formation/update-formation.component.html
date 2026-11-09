@@ -1,0 +1,47 @@
+<!-- Sidebar gauche -->
+<app-slidebar-etablissement-fix *ngIf="sidebarVisible"></app-slidebar-etablissement-fix>
+
+<!-- Contenu principal -->
+<div class="main-content-area" style="margin-top: 0 !important; padding-top: 0 !important;">
+
+  <!-- Navbar -->
+  <app-navbar-etablissement (toggleGauche)="toggleSidebar()"></app-navbar-etablissement>
+
+  <div class="content-wrapper">
+    <!-- Titre -->
+    <h1 class="page-title">Modifier la formation</h1>
+
+    <!-- Carte blanche avec bord arrondi -->
+    <div class="form-card">
+      <form (ngSubmit)="updateFormation()">
+        <div class="form-group">
+          <label for="nom">Nom de la formation</label>
+          <input id="nom" type="text" [(ngModel)]="selectedFormation.nom" name="nom" required />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" [(ngModel)]="selectedFormation.description" name="description"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="duree">Durée (en années) </label>
+          <input id="duree" type="number" [(ngModel)]="selectedFormation.duree" name="duree" required />
+        </div>
+
+        <div class="form-group">
+          <label for="frais">Frais annuel </label>
+          <input id="frais" type="text" [(ngModel)]="selectedFormation.frais" name="frais" required />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-jaune">Mettre à jour la formation</button>
+          <button type="button" class="btn btn-gris" (click)="cancel()">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<app-footer-etablissement></app-footer-etablissement>

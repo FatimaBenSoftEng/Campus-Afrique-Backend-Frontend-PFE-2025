@@ -1,0 +1,103 @@
+<aside class="sidebar-vertical">
+  <!-- HEADER -->
+  <div class="sidebar-header">
+    <img src="img/logov3.png" alt="Campus Afrique" class="sidebar-logo" />
+    <span class="sidebar-title-logo">Campus Afrique</span>
+  </div>
+
+  <!-- MENU -->
+  <nav class="sidebar-menu">
+
+    <!-- TABLEAU DE BORD -->
+    <div class="menu-section">
+      <div class="section-title">TABLEAU DE BORD</div>
+      <a class="menu-item" routerLink="/dashboard-etablissement">
+        <i class="fas fa-home"></i>Tableau de bord
+      </a>
+    </div>
+
+    <!-- MON PROFIL -->
+    <div class="menu-section">
+      <div class="section-title">PROFIL ETABLISSEMENT</div>
+      <a class="menu-item" routerLink="/profil">
+        <i class="fas fa-building"></i>Profil Etablissement
+      </a>
+    </div>
+
+    <!-- MES FORMATIONS -->
+    <div class="menu-section">
+      <div class="section-title">FORMATIONS</div>
+      <div class="dropdown">
+        <a href="javascript:void(0)" (click)="toggleDemandes()">
+          <i class="fas fa-book"></i>
+          Gestion des formations
+          <i class="fas fa-chevron-down" style="margin-left:auto;"></i>
+        </a>
+        <div class="dropdown-list" *ngIf="menuDemandesOuvertes">
+          <a class="dropdown-item" routerLink="/ajouter-formation" routerLinkActive="active-submenu">Ajouter formation</a>
+          <a class="dropdown-item" routerLink="/all-formation" routerLinkActive="active-submenu">Toutes les formations</a>
+          <a class="dropdown-item" routerLink="/active-formation" routerLinkActive="active-submenu">Formation active</a>
+          <a class="dropdown-item" routerLink="/inactive-formation" routerLinkActive="active-submenu">Formation inactive</a>
+          <a class="dropdown-item" routerLink="/review-formation" routerLinkActive="active-submenu">Revue de la formation</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GESTION DES CANDIDATURES -->
+    <div class="menu-section">
+      <div class="section-title">GESTION DES CANDIDATURES</div>
+      <div class="dropdown">
+        <a href="javascript:void(0)" (click)="toggleCandidature()">
+          <i class="fas fa-user-check"></i>
+          Gestion des candidatures
+          <i class="fas fa-chevron-down" style="margin-left:auto;"></i>
+        </a>
+        <div class="dropdown-list" *ngIf="menuCandidatureOuvertes">
+          <a class="dropdown-item" routerLink="/preregistration-list" routerLinkActive="active-submenu">Liste de préinscriptions</a>
+          <a class="dropdown-item" routerLink="/application-validation" routerLinkActive="active-submenu">Validation candidature</a>
+          <a class="dropdown-item" routerLink="/access-student-documents" routerLinkActive="active-submenu">Accès documents étudiants</a>
+          <a class="dropdown-item" routerLink="/preregistration-certificate" routerLinkActive="active-submenu">Attestation préinscription</a>
+          <a class="dropdown-item" routerLink="/payment-validation" routerLinkActive="active-submenu">Validation paiement</a>
+          <a class="dropdown-item" routerLink="/registration-certificate" routerLinkActive="active-submenu">Attestation inscription</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GESTION DES PAIEMENTS -->
+    <div class="menu-section">
+      <div class="section-title">GESTION DES PAIEMENTS</div>
+      <div class="dropdown">
+        <a href="javascript:void(0)" (click)="togglePaiements()">
+          <i class="fas fa-coins"></i>
+          Gestion des paiements
+          <i class="fas fa-chevron-down" style="margin-left:auto;"></i>
+        </a>
+        <div class="dropdown-list" *ngIf="menuPaiementsOuvertes">
+          <a class="dropdown-item" routerLink="/list-pending-payments" routerLinkActive="active-submenu">Liste des paiements en attente</a>
+          <a class="dropdown-item" routerLink="/list-confirmed-registrants" routerLinkActive="active-submenu">Liste des  inscrits confirmés</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORGANISATION DES ENTRETIENS -->
+    <div class="menu-section">
+      <div class="section-title">ORGANISATION DES ENTRETIENS</div>
+      <a class="menu-item" routerLink="/organization-interviews">
+        <i class="fas fa-user-tie"></i>Organisation des entretiens
+      </a>
+    </div>
+
+    <!-- MES RAPPORTS -->
+    <div class="menu-section">
+      <div class="section-title">RAPPORTS</div>
+      <a class="menu-item" routerLink="/rapport">
+        <i class="fas fa-file-alt"></i>Rapport
+      </a>
+    </div>
+
+    <!-- DÉCONNEXION -->
+    <a class="logout-item" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>Déconnexion
+    </a>
+  </nav>
+</aside>

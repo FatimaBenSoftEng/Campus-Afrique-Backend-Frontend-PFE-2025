@@ -1,0 +1,12 @@
+/* Style pour carte ambassade */
+.card.ambassade-card {
+  background-color: var(--light);
+  border-left: 5px solid var(--primary);
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.card.ambassade-card:hover {
+  box-shadow: 0 0 15px rgba(243, 189, 0, 0.3); // ombre dorée
+  transform: translateY(-4px);
+}

@@ -1,0 +1,55 @@
+<nav class="navbar-kaiadmin">
+  <div class="search-container">
+    <button class="sidebar-toggle-btn" (click)="toggleSidebar(); $event.stopPropagation()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <div class="navbar-actions">
+
+    <!-- Notifications -->
+    <div class="notif-btn" (click)="toggleNotification(); $event.stopPropagation()">
+      <i class="far fa-bell"></i>
+      <span class="notif-badge">2</span>
+
+      <div class="notification-dropdown" *ngIf="showNotificationDropdown" (click)="$event.stopPropagation()">
+        <div class="notification-header">
+          <h4>Notifications (2)</h4>
+          <button class="mark-read-btn">Tout marquer comme lu</button>
+        </div>
+        <div class="notification-list">
+          <div class="notification-item">
+            <i class="fas fa-circle notification-dot"></i>
+            <span>Nouveau message reçu</span>
+            <small>2 min ago</small>
+          </div>
+          <div class="notification-item">
+            <span>Votre document a été approuvé</span>
+            <small>3h ago</small>
+          </div>
+          <div class="no-notifications">Aucune notification</div>
+        </div>
+      </div>
+    </div>
+
+    <a  routerLink="" class="notification-dot" style="color:#fff;"><i class="fas fa-home"></i> Visitez le site Web</a>
+
+    <!-- Utilisateur -->
+    <div class="user-menu" (click)="toggleUserDropdown(); $event.stopPropagation()">
+      <img [src]="photoProfilUrl" alt="Profil étudiant" class="user-avatar">
+      <span class="user-name">{{ utilisateurNomComplet }}</span>
+      <i class="fas fa-chevron-down" [class.rotated]="showUserDropdown"></i>
+
+      <div class="user-dropdown" *ngIf="showUserDropdown" (click)="$event.stopPropagation()">
+        <a routerLink="/formulaire-profil"><i class="fas fa-user"></i> Mon profil</a>
+        <a routerLink="/parametres"><i class="fas fa-cog"></i> Paramètres</a>
+        <hr>
+        <a (click)="logout()" class="logout-link"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ✅ Ajoute ceci en DEHORS de <nav>, pour gérer la fermeture -->
+<div class="overlay" *ngIf="showNotificationDropdown || showUserDropdown" (click)="handleClickOutside($event)"></div>

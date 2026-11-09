@@ -1,0 +1,99 @@
+<!-- Sidebar gauche -->
+<app-slidebar-etablissement-fix *ngIf="sidebarVisible"></app-slidebar-etablissement-fix>
+
+<!-- Contenu principal -->
+<div class="main-content-area" style="margin-top: 0 !important; padding-top: 0 !important;">
+
+  <!-- Navbar -->
+  <app-navbar-etablissement (toggleGauche)="toggleSidebar()"></app-navbar-etablissement>
+  <div class="content-wrapper">
+    <!-- Titre et bouton Ajouter Formation -->
+    <div class="table-header">
+      <h1 class="page-title">Formation Inactive</h1>
+      <!-- Bouton -->
+      <div class="form-actions">
+        <div class="form-submit-container">
+          <button type="submit" class="btn btn-jaune" [routerLink]="['/ajouter-formation']"><i class="fa fa-plus"></i>Ajouter Formation</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section du tableau avec arrière-plan blanc -->
+    <div class="table-section">
+      <!-- Contrôles du tableau : Show entries et Search -->
+      <div class="table-controls">
+        <div class="show-entries">
+          <label>
+            Show
+            <select class="entries-select">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            entries
+          </label>
+        </div>
+        <div class="search-container">
+          <label>
+            Search:
+            <input type="text" class="search-input" placeholder="">
+          </label>
+        </div>
+      </div>
+
+      <!-- Tableau des formations -->
+      <table class="etat-demande-table">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nom de la formation</th>
+          <th>Description</th>
+          <th>Durée (années)</th>
+          <th>Frais annuel</th>
+          <th>Statut</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let formation of formations">
+          <td>{{ formation.id }}</td>
+          <td>{{ formation.nom }}</td>
+          <td>{{ formation.description }}</td>
+          <td>{{ formation.duree }}</td>
+          <td>{{ formation.frais }}</td>
+          <td>
+            <span class="etat-badge en_attente">{{ formation.statut }}</span>
+          </td>
+          <td>
+            <!-- Modifier -->
+            <button class="action-icon edit" title="Modifier" [routerLink]="['/update-formation']">
+              <i class="fa fa-edit"></i>
+            </button>
+            <!-- Supprimer -->
+            <button class="action-icon delete" title="Supprimer">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="table-pagination">
+        <div class="pagination-info">
+          Showing 1 to 2 of 2 entries
+        </div>
+        <div class="pagination-controls">
+          <button class="pagination-btn" disabled>Previous</button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn" disabled>Next</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<app-footer-etablissement></app-footer-etablissement>

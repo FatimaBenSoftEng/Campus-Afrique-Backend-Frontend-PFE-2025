@@ -1,0 +1,66 @@
+
+<app-navbar></app-navbar>
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
+  <div class="container text-center">
+    <h1 class="display-4 text-white animated slideInDown mb-4">Se connecter</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a class="text-white" routerLink="/">Accueil</a></li>
+        <li class="breadcrumb-item text-primary active" aria-current="page">Se connecter</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<!-- Page Header End -->
+
+<div class="login-container">
+  <div class="login-card-split">
+    <!-- Partie Gauche - Formulaire -->
+    <div class="login-form-section">
+      <div class="form-header">
+        <h2 class="login-title">Se connecter</h2>
+        <p class="login-subtitle">Bon retour ! Connectez-vous avec les informations que vous avez fournies lors de l'inscription</p>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="input-field">
+          <label>ADRESSE E-MAIL</label>
+          <input type="email" [(ngModel)]="form.email" name="email" required>
+        </div>
+
+        <div class="input-field">
+          <label>MOT DE PASSE</label>
+          <input type="password" [(ngModel)]="form.password" name="password" required>
+        </div>
+
+        <div class="form-actions">
+          <label class="remember-checkbox">
+            <input type="checkbox">
+            <span>Se souvenir de moi</span>
+          </label>
+          <a routerLink="/forgot-password" class="forgot-link">Mot de passe oublié</a>
+        </div>
+
+        <button type="submit" class="btn-login">Se connecter</button>
+      </form>
+    </div>
+
+    <!-- Partie Droite - Bienvenue -->
+    <div class="welcome-section">
+      <div class="welcome-content">
+        <p class="welcome-title">Soit, bienvenue !</p>
+        <p class="welcome-text">Entrez vos détails personnels et commencez votre voyage avec nous.</p>
+        <button routerLink="/sign" class="btn-create-account">Créer Un Compte</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bouton retour haut -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
+  <i class="bi bi-arrow-up"></i>
+</a>
+<app-footer></app-footer>

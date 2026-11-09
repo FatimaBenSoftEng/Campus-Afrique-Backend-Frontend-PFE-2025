@@ -1,0 +1,26 @@
+﻿# IntelliJ
+.idea/
+*.iml
+
+# Java / Spring Boot
+backend/target/
+backend/.idea/
+*.class
+
+# Angular
+Frontend/node_modules/
+Frontend/.angular/
+Frontend/dist/
+
+# Uploads
+backend/uploads/
+src/main/resources/static/uploads/
+
+# Logs
+*.log
+
+# Fichiers sensibles
+.env
+.env.*
+application-local.properties
+backend/src/main/resources/static/uploads/

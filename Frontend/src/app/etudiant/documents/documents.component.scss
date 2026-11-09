@@ -1,0 +1,86 @@
+@use '../../../styles/layout-etudiant' as *;
+
+.content-wrapper {
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #003366;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  button {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+
+    &.active {
+      background-color: #003366;
+      color: white;
+    }
+  }
+}
+
+.doc-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.doc-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.3s;
+
+  .doc-info {
+    margin-bottom: 1rem;
+
+    h3 {
+      margin: 0 0 0.5rem;
+      font-size: 18px;
+      color: #003366;
+    }
+
+    .doc-date {
+      font-size: 14px;
+      color: #777;
+    }
+  }
+
+  .btn-voir,
+  .btn-telecharger {
+    align-self: flex-end; // ✅ Aligne le bouton à droite
+    background-color: #ffc107;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 1.2rem;   // ✅ taille réduite
+    font-weight: 500;
+    font-size: 13px;          // ✅ texte un peu plus petit
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #e09c00;
+    }
+
+  }
+}

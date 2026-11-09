@@ -1,0 +1,250 @@
+/* Variables Couleurs */
+$drivin-yellow: #ffc107;
+$drivin-yellow-hover: #e0a800;
+$drivin-yellow-darker: #d39e00;
+$drivin-blue: #120f2e;
+$drivin-dark: #212529;
+$drivin-light: #f8f9fa;
+$drivin-gray: #6c757d;
+$drivin-border: #ced4da;
+
+/* Styles Généraux */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $drivin-light;
+  padding: 20px;
+}
+
+.login-card-split {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Partie Gauche - Formulaire */
+.login-form-section {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form-header {
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+
+    .login-title {
+      color: $drivin-dark;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .login-subtitle {
+      color: $drivin-gray;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+  }
+
+  .form-divider {
+    width: 100%;
+    max-width: 350px;
+    height: 1px;
+    background: #e9ecef;
+    margin: 15px 0;
+  }
+}
+
+.input-field {
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    color: $drivin-dark;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid $drivin-border;
+    border-radius: 50px;
+    font-size: 14px;
+    transition: all 0.3s;
+
+    &:focus {
+      outline: none;
+      border-color: $drivin-blue;
+      box-shadow: 0 0 0 3px rgba(18, 15, 46, 0.2);
+    }
+  }
+}
+
+.form-actions {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0;
+  gap: 30px;
+
+  .remember-checkbox {
+    display: flex;
+    align-items: center;
+    color: #495057;
+    font-size: 14px;
+    white-space: nowrap;
+
+    input {
+      margin-right: 8px;
+    }
+  }
+
+  .forgot-link {
+    color: $drivin-yellow-darker;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Bouton Connexion */
+.btn-login {
+  width: 100%;
+  max-width: 350px;
+  padding: 16px;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(120deg, $drivin-yellow, $drivin-yellow-hover, $drivin-yellow-darker);
+  background-size: 200% auto;
+  background-position: right center;
+  transition: background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    background-position: left center; // Slide du gradient
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(211, 158, 0, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Partie Droite - Bienvenue */
+.welcome-section {
+  flex: 1;
+  padding: 40px;
+  background-color: $drivin-yellow-hover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 40px;
+    bottom: 40px;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .welcome-content {
+    text-align: center;
+    max-width: 280px;
+
+    .welcome-title {
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .welcome-text {
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+/* Bouton Créer un compte - blanc par défaut, jaune au hover */
+.btn-create-account {
+  width: 100%;
+  padding: 16px;
+  background-color: white; /* Blanc par défaut */
+  color: $drivin-dark;      /* Texte foncé par défaut */
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: $drivin-yellow-hover; /* Fond devient jaune foncé */
+    color: $drivin-light; /* Texte devient clair (blanc cassé) */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-card-split {
+    flex-direction: column;
+    border-radius: 15px;
+
+    .welcome-section {
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  .login-form-section,
+  .welcome-section {
+    padding: 30px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}

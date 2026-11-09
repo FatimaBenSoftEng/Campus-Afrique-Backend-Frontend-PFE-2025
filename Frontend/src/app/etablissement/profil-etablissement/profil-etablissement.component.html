@@ -1,0 +1,135 @@
+<!-- Sidebar gauche -->
+<app-slidebar-etablissement-fix *ngIf="sidebarVisible"></app-slidebar-etablissement-fix>
+
+<!-- Contenu principal -->
+<div class="main-content-area" style="margin-top: 0 !important; padding-top: 0 !important;">
+
+  <!-- Navbar -->
+  <app-navbar-etablissement (toggleGauche)="toggleSidebar()"></app-navbar-etablissement>
+  <div class="content-wrapper">
+    <!-- Titre et bienvenue -->
+    <h1 class="page-title">Profil Établissement</h1>
+    <form autocomplete="off" class="profil-form">
+      <!-- Bloc image établissement -->
+      <div class="profile-header">
+        <div class="profile-image-container">
+          <img src="" alt="Logo établissement" class="profile-image" />
+        </div>
+
+        <div class="form-group mt-3">
+          <label>Logo / Image</label>
+          <input type="file" id="etabImage" accept="image/*">
+        </div>
+      </div>
+
+      <!-- Informations générales -->
+      <div class="form-section">
+        <h3>Informations générales</h3>
+
+        <div class="form-group">
+          <label class="required">Nom de l’établissement</label>
+          <input type="text" name="nom" required>
+        </div>
+
+        <div class="form-group">
+          <label>Nom abrégé</label>
+          <input type="text" name="nom_abr">
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea name="description"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="required">Adresse</label>
+            <input type="text" name="adresse" required>
+          </div>
+
+          <div class="form-group">
+            <label>Ville</label>
+            <input type="text" name="ville">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Pays</label>
+            <input type="text" name="pays">
+          </div>
+
+          <div class="form-group">
+            <label>Type (Privé/Public)</label>
+            <select name="type">
+              <option value="">Sélectionnez</option>
+              <option value="Privé">Privé</option>
+              <option value="Public">Public</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Site Web</label>
+          <input type="url" name="site_web">
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email">
+        </div>
+
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input type="tel" name="telephone" pattern="[0-9+ ]{8,20}">
+        </div>
+      </div>
+
+      <!-- Informations académiques -->
+      <div class="form-section">
+        <h3>Informations académiques</h3>
+
+        <div class="form-group">
+          <label>Bourse disponible</label>
+          <select name="bourse_disponible">
+            <option value="1">Oui</option>
+            <option value="0">Non</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Type de diplôme</label>
+          <input type="text" name="type_diplome">
+        </div>
+
+        <div class="form-group">
+          <label>Reconnaissance par l’État</label>
+          <input type="text" name="reconnaissance_etat">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date début candidature</label>
+            <input type="date" name="date_debut_candidature">
+          </div>
+
+          <div class="form-group">
+            <label>Date fin candidature</label>
+            <input type="date" name="date_fin_candidature">
+          </div>
+        </div>
+      </div>
+
+      <!-- Bouton -->
+      <div class="form-actions">
+        <div class="form-submit-container">
+          <button type="submit" class="btn btn-jaune">Enregistrer l’établissement</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<app-footer-etablissement></app-footer-etablissement>

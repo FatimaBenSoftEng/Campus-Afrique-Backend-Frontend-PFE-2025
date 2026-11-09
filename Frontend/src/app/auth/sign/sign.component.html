@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
+  <div class="container text-center">
+    <h1 class="display-4 text-white animated slideInDown mb-4">S'inscrire</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a class="text-white" routerLink="/">Accueil</a></li>
+        <li class="breadcrumb-item text-primary active" aria-current="page">S'inscrire</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<!-- Page Header End -->
+
+<div class="register-container">
+  <div class="register-card">
+    <h1 class="register-title">S'inscrire</h1>
+
+    <form class="register-form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <div class="input-field">
+        <label>NOM</label>
+        <input type="text" [(ngModel)]="form.nom" name="nom" required>
+
+      </div>
+
+      <div class="input-field">
+        <label>PRÉNOM</label>
+        <input type="text" [(ngModel)]="form.prenom" name="prenom" required>
+
+      </div>
+
+      <div class="input-field">
+        <label>E-MAIL</label>
+        <input type="email" [(ngModel)]="form.email" name="email" required>
+      </div>
+
+      <div class="input-field">
+        <label>MOT DE PASSE</label>
+        <input type="password" [(ngModel)]="form.password" name="password" required>
+      </div>
+
+      <div class="checkbox-field">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">
+          J'ai lu et j'accepte les <a routerLink="/conditions-generales" class="terms-link">conditions générales</a>
+        </label>
+      </div>
+
+      <button type="submit" class="btn-register">S'inscrire</button>
+    </form>
+
+
+    <div class="divider"></div>
+
+    <p class="login-redirect">
+      Vous avez déjà un compte ? <a routerLink="/log" class="login-link">Se connecter</a>
+    </p>
+  </div>
+</div>
+
+<!-- Bouton retour haut -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
+  <i class="bi bi-arrow-up"></i>
+</a>
+<app-footer></app-footer>

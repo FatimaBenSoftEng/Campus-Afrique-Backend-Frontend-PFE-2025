@@ -1,0 +1,38 @@
+<div class="app-layout">
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+  <div class="main-content-area">
+    <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+
+    <div class="etat-demande-container">
+      <h1 class="page-title">Statut bourse</h1>
+
+      <div *ngIf="demandes.length === 0" class="alert alert-info">Aucune demande enregistrée.</div>
+
+      <table *ngIf="demandes.length > 0" class="etat-demande-table">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Organisme de bourse</th>
+          <th>Type de bourse</th>
+          <th>Date de demande</th>
+          <th>Statut</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let demande of demandes; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ demande.organismeNom }}</td>
+          <td>{{ demande.typeBourse }}</td>
+          <td>{{ demande.dateDemande | date:'dd/MM/yyyy' }}</td>
+          <td>
+              <span [ngClass]="getBadgeClass(demande.statut)">
+                {{ demande.statut }}
+              </span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-footer-etudiant></app-footer-etudiant>
+</div>

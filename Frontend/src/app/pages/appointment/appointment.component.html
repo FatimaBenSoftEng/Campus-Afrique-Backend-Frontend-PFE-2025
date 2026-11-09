@@ -1,0 +1,103 @@
+<!-- Navbar - s'affiche conditionnellement -->
+<app-navbar></app-navbar>
+<!-- Page Header -->
+<div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
+  <div class="container text-center">
+    <h1 class="display-4 text-white mb-4">Ambassades Africaines</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a class="text-white" href="/">Accueil</a></li>
+        <li class="breadcrumb-item active text-primary" aria-current="page">Ambassades</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- Search Section -->
+<div class="container py-5">
+  <div class="bg-white p-4 rounded shadow-sm mb-4">
+    <div class="row g-3 align-items-end">
+      <div class="col-md-6">
+        <label class="form-label fw-bold text-dark">Pays de l'ambassade</label>
+        <input type="text" class="form-control" placeholder="Ex: Sénégal, Côte d'Ivoire...">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label fw-bold text-dark">Type de service</label>
+        <select class="form-select">
+          <option value="">Tous les services</option>
+          <option>Visa étudiant</option>
+          <option>Légalisation de documents</option>
+          <option>Information générale</option>
+        </select>
+      </div>
+      <div class="col-md-2 text-end">
+        <button class="btn btn-primary w-100">
+          <i class="fas fa-search me-1"></i> Rechercher
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Liste des ambassades -->
+  <div class="row g-4  wow fadeInUp" data-wow-delay="0.1s">
+    <!-- Carte ambassade 1 -->
+    <div class="col-md-6">
+      <div class="card ambassade-card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://flagcdn.com/w320/sn.png" alt="Sénégal" class="me-3 rounded" style="width: 50px; height: 35px; object-fit: cover;">
+            <div>
+              <h5 class="text-primary mb-0">Ambassade du Sénégal</h5>
+              <small class="text-muted">Rabat, Maroc</small>
+            </div>
+          </div>
+          <p class="mb-2"><i class="fas fa-phone-alt text-primary me-2"></i>+212 537 00 00 00</p>
+          <p class="mb-2"><i class="fas fa-envelope text-primary me-2"></i>contact&#64;ambaci.org</p>
+          <p class="mb-2"><i class="fas fa-globe text-primary me-2"></i><a href="#">www.ambassade-senegal.org</a></p>
+          <div class="mt-3">
+            <span class="badge bg-light text-dark border me-2">Visa étudiant</span>
+            <span class="badge bg-light text-dark border me-2">Information</span>
+          </div>
+        </div>
+        <div class="card-footer bg-white border-0 d-flex justify-content-end">
+          <button class="btn btn-outline-primary me-2">Détails</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte ambassade 2 -->
+    <div class="col-md-6">
+      <div class="card ambassade-card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://flagcdn.com/w320/sn.png" alt="Sénégal" class="me-3 rounded" style="width: 50px; height: 35px; object-fit: cover;">
+            <div>
+              <h5 class="text-primary mb-0">Ambassade du Sénégal</h5>
+              <small class="text-muted">Rabat, Maroc</small>
+            </div>
+          </div>
+          <p class="mb-2"><i class="fas fa-phone-alt text-primary me-2"></i>+212 537 00 00 00</p>
+          <p class="mb-2"><i class="fas fa-envelope text-primary me-2"></i>contact&#64;ambaci.org</p>
+          <p class="mb-2"><i class="fas fa-globe text-primary me-2"></i><a href="#">www.ambassade-senegal.org</a></p>
+          <div class="mt-3">
+            <span class="badge bg-light text-dark border me-2">Visa étudiant</span>
+            <span class="badge bg-light text-dark border me-2">Information</span>
+          </div>
+        </div>
+        <div class="card-footer bg-white border-0 d-flex justify-content-end">
+          <button class="btn btn-outline-primary me-2">Détails</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ajouter d'autres ambassades ici avec la même structure -->
+  </div>
+</div>
+
+<!-- Bouton retour haut -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
+  <i class="bi bi-arrow-up"></i>
+</a>
+
+<!-- Footer - s'affiche conditionnellement -->
+<app-footer></app-footer>

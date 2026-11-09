@@ -1,0 +1,93 @@
+<!-- Sidebar gauche -->
+<app-slidebar-etablissement-fix *ngIf="sidebarVisible"></app-slidebar-etablissement-fix>
+
+<!-- Contenu principal -->
+<div class="main-content-area">
+
+  <!-- Navbar -->
+  <app-navbar-etablissement (toggleGauche)="toggleSidebar()"></app-navbar-etablissement>
+
+  <div class="content-wrapper">
+
+    <!-- Titre et bienvenue -->
+    <div class="dashboard-header">
+      <h1>Tableau de Bord</h1>
+      <p class="welcome-msg">Bienvenue à l'établissement !</p>
+    </div>
+
+    <!-- Statistiques rapides -->
+    <div class="dashboard-cards">
+      <div class="stat-card">
+        <div class="card-icon">👨‍🎓</div>
+        <div>
+          <div class="stat-value">1200</div>
+          <div class="stat-label">Étudiants</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="card-icon">📚</div>
+        <div>
+          <div class="stat-value">75</div>
+          <div class="stat-label">Cours actifs</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="card-icon">🧑‍🏫</div>
+        <div>
+          <div class="stat-value">45</div>
+          <div class="stat-label">Enseignants</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="card-icon">📅</div>
+        <div>
+          <div class="stat-value">15</div>
+          <div class="stat-label">Événements</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Graphiques -->
+    <div class="dashboard-graphs">
+      <div class="graph-card">
+        <h4>Inscription des étudiants</h4>
+        <canvas id="studentsChart"></canvas>
+      </div>
+      <div class="graph-card">
+        <h4>Fréquentation des cours</h4>
+        <canvas id="attendanceChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Événements importants -->
+    <div class="important-dates">
+      <h4>Événements à venir</h4>
+      <ul>
+        <li>10 Octobre - Réunion enseignants</li>
+        <li>15 Octobre - Clôture des inscriptions</li>
+        <li>20 Octobre - Journée portes ouvertes</li>
+      </ul>
+    </div>
+
+    <!-- Téléchargements récents -->
+    <div class="dashboard-downloads">
+      <h4>Documents récents</h4>
+      <ul>
+        <li><i class="fa fa-file-pdf"></i>Planning des cours <span class="download-count">10 téléchargements</span></li>
+        <li><i class="fa fa-file-pdf"></i>Règlement intérieur <span class="download-count">25 téléchargements</span></li>
+      </ul>
+    </div>
+
+    <!-- Accès rapide -->
+    <div class="quick-access">
+      <button (click)="goToStudents()">Étudiants</button>
+      <button (click)="goToCourses()">Cours</button>
+      <button (click)="goToTeachers()">Enseignants</button>
+      <button (click)="goToEvents()">Événements</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<app-footer-etablissement></app-footer-etablissement>

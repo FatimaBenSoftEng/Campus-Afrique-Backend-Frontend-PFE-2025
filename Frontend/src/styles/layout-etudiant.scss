@@ -1,0 +1,207 @@
+// ==========================================
+// VARIABLES GLOBALES
+// ==========================================
+$navbar-height: 60px;
+$footer-height: 60px;
+$sidebar-width: 280px;
+$mobile-breakpoint: 992px;
+
+// ==========================================
+// STRUCTURE GLOBALE DE LA PAGE
+// ==========================================
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overflow: auto;
+}
+
+// ==========================================
+// SIDEBAR ÉTUDIANT (GAUCHE)
+// ==========================================
+app-sidebar-etudiant-fix {
+  width: $sidebar-width;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1000;
+  background: #fff;
+}
+
+// ==========================================
+// SIDEBAR ÉVÉNEMENTS (DROITE)
+// ==========================================
+/* app-sidebar-evenements {
+  width: $sidebar-evenements-width;
+  position: fixed;
+  top: $navbar-height;
+  right: 0;
+  height: calc(100vh - #{$navbar-height} - #{$footer-height});
+  overflow-y: auto;
+  z-index: 1001;
+  background: #0e0f28;
+  border-radius: 0 !important;
+} */
+
+// ==========================================
+// NAVBAR (HAUT)
+// ==========================================
+app-navbar-etudiant {
+  position: fixed;
+  top: 0;
+  left: $sidebar-width;
+  right: 20px;
+  height: $navbar-height;
+  background: #fff;
+  z-index: 1002;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+
+  * {
+    pointer-events: auto;
+  }
+}
+
+// ==========================================
+// FOOTER (BAS)
+// ==========================================
+app-footer-etudiant {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $footer-height;
+  background: #F3BD00;
+  z-index: -1;
+  pointer-events: none;
+
+  * {
+    pointer-events: auto;
+  }
+}
+
+// ==========================================
+// ZONE CENTRALE DU CONTENU
+// ==========================================
+.main-content-area {
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: $navbar-height;
+  margin-bottom: $footer-height;
+  margin-left: $sidebar-width;
+  margin-right: 0; // ✅ Plus de sidebar à droite
+  width: calc(100% - #{$sidebar-width}); // ✅ Utilise toute la largeur disponible
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 0;
+}
+
+
+.content-wrapper {
+  flex-grow: 1;
+  padding: 2rem;
+  min-height: 100%;
+  padding-bottom: 120px; // pour laisser de l’espace avant le footer
+}
+
+// ==========================================
+// TITRE DE PAGE
+// ==========================================
+.page-title {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  background: none;
+  position: relative;
+  padding-left: 1.2rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.2rem;
+    width: 6px;
+    height: 80%;
+    background: #ffc107;
+    border-radius: 4px;
+  }
+}
+
+// ==========================================
+// FIL D’ARIANE (BREADCRUMB)
+// ==========================================
+.breadcrumb-bar {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2C3E50;
+  margin-bottom: 1.5rem;
+  background: #f8fafc;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.04);
+
+  a {
+    text-decoration: none;
+    color: #3498DB;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #217dbb;
+    }
+
+    &.active {
+      color: #ffc107;
+      font-weight: 700;
+      cursor: default;
+    }
+  }
+
+  .breadcrumb-separator {
+    margin: 0 0.5rem;
+    color: #b0b8c1;
+    font-weight: 400;
+  }
+}
+
+// ==========================================
+// RESPONSIVE
+// ==========================================
+@media (max-width: $mobile-breakpoint) {
+  .app-layout {
+    flex-direction: column;
+
+    app-sidebar-etudiant-fix,
+    app-sidebar-evenements {
+      position: absolute;
+      width: 100%;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    app-navbar-etudiant,
+    app-footer-etudiant {
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+
+    .main-content-area {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+
+    }
+  }
+}

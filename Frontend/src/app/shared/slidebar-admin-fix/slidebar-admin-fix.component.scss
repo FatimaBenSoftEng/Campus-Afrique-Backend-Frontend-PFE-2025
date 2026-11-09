@@ -1,0 +1,253 @@
+// === Variables ===
+$sidebar-bg: #0C2B4B;
+$sidebar-highlight: #F3BD00;
+$sidebar-text: #ffffff;
+$sidebar-muted: #bbbbbb;
+$sidebar-hover: #15416e;
+$sidebar-border: rgba(255, 255, 255, 0.08);
+$sidebar-font: 'Segoe UI', sans-serif;
+
+// === Mixins ===
+@mixin transition($prop: all, $duration: 0.3s) {
+  transition: $prop $duration ease;
+}
+
+.dropdown-list {
+  display: flex;
+  flex-direction: column;
+  background-color: darken($sidebar-bg, 4%);
+  border-left: 2px solid $sidebar-highlight;
+  margin-left: 2rem;
+  margin-top: 0.3rem;
+
+  .dropdown-item {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    color: $sidebar-text;
+    @include transition;
+
+    &:hover {
+      background-color: $sidebar-hover;
+    }
+  }
+}
+
+// Style appliqué au lien actif dans le sous-menu
+.dropdown-item.active-submenu {
+  background-color: #F3BD00;
+  color: #0C2B4B; // texte foncé pour contraste
+  font-weight: bold;
+
+  i {
+    color: #0C2B4B;
+  }
+}
+// === Sidebar container ===
+.sidebar-vertical {
+  width: 280px;
+  height: 100vh;
+  background-color: $sidebar-bg;
+  color: $sidebar-text;
+  display: flex;
+  flex-direction: column;
+  font-family: $sidebar-font;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+// === Header ===
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid $sidebar-border;
+
+  .sidebar-logo {
+    height: 75px;
+    margin-right: 0.5rem;
+  }
+
+  .sidebar-title-logo {
+    color: $sidebar-highlight;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+}
+
+// === Mini profil étudiant ===
+.student-mini-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid $sidebar-border;
+
+  .empty-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      font-size: 1.8rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  .student-mini-info {
+    h4 {
+      margin: 0;
+      font-size: 1rem;
+      color: $sidebar-text;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: $sidebar-muted;
+    }
+  }
+}
+
+// === Menu principal avec scroll interne ===
+.sidebar-menu {
+  flex-grow: 1;       // ✅ important
+  min-height: 0;      // ✅ nécessaire pour que flex-grow active le scroll
+  padding: 1.5rem 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  .menu-section {
+    margin-bottom: 2rem;
+
+    .section-title {
+      font-size: 0.75rem;
+      color: $sidebar-muted;
+      text-transform: uppercase;
+      padding: 0 1.5rem 0.5rem;
+      font-weight: 600;
+    }
+  }
+
+  .menu-item,
+  .dropdown > a {
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1.5rem;
+    text-decoration: none;
+    color: $sidebar-text;
+    font-size: 0.95rem;
+    font-weight: 500;
+    @include transition;
+
+    i {
+      margin-right: 1rem;
+      color: $sidebar-highlight;
+      font-size: 1.1rem;
+    }
+
+    &:hover {
+      background-color: $sidebar-hover;
+    }
+  }
+
+  .menu-item.active {
+    background-color: $sidebar-hover;
+    color: white;
+  }
+
+  .dropdown {
+    position: relative;
+
+    .show-on-hover {
+      display: none;
+      flex-direction: column;
+      background-color: darken($sidebar-bg, 4%);
+      border-left: 2px solid $sidebar-highlight;
+      margin-left: 2rem;
+      margin-top: 0.3rem;
+
+      .dropdown-item {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.9rem;
+        color: $sidebar-text;
+        @include transition;
+
+        &:hover {
+          background-color: $sidebar-hover;
+        }
+      }
+    }
+
+    &:hover .show-on-hover {
+      display: flex;
+    }
+  }
+
+  .logout-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    color: $sidebar-text;
+    text-decoration: none;
+    border-top: 1px solid $sidebar-border;
+    margin-top: 1rem;
+    @include transition;
+
+    i {
+      color: $sidebar-highlight;
+      margin-right: 1rem;
+    }
+
+    &:hover {
+      background-color: $sidebar-hover;
+      color: $sidebar-highlight;
+    }
+  }
+}
+
+// === Footer (optionnel) ===
+.sidebar-footer {
+  display: none;
+}
+
+// === Responsive ===
+:host {
+  width: 280px;
+  height: 100vh;
+  transition: width 0.3s ease;
+}
+
+@media (max-width: 992px) {
+  :host {
+    width: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    width: 0;
+    overflow: hidden;
+
+    &.active {
+      width: 280px;
+    }
+  }
+}

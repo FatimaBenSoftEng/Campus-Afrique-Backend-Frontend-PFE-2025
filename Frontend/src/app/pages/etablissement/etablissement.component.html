@@ -1,0 +1,182 @@
+<!-- Navbar - s'affiche conditionnellement -->
+<app-navbar></app-navbar>
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
+  <div class="container text-center">
+    <h1 class="display-4 text-white animated slideInDown mb-4">Établissements</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a class="text-white" routerLink="">Accueil</a></li>
+        <li class="breadcrumb-item text-primary active" aria-current="page">Établissements</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Courses Start -->
+<div class="container-xxl py-6">
+  <div class="container">
+    <!-- Recherche + filtres sur une ligne -->
+    <div class="row mb-5">
+      <div class="col-lg-12">
+        <div class="courses_search_container shadow p-4">
+          <form class="row g-2 align-items-center" (ngSubmit)="onSearch()">
+            <!-- Champ de recherche -->
+            <div class="col-md-4">
+              <input type="search"
+                     class="form-control"
+                     [(ngModel)]="searchKeyword"
+                     name="searchKeyword"
+                     placeholder="Rechercher des établissements"
+                     required>
+            </div>
+            <!-- Bouton Rechercher -->
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-primary w-100">Rechercher</button>
+            </div>
+            <!-- Filtre par type -->
+            <div class="col-md-3">
+              <select class="form-select"
+                      [(ngModel)]="typeSelectionne"
+                      name="typeSelectionne"
+                      (change)="onFiltrer()">
+                <option value="">Tous les types</option>
+                <option *ngFor="let t of typesDisponibles" [value]="t">{{ t }}</option>
+              </select>
+            </div>
+
+            <!-- Filtre par pays -->
+            <div class="col-md-3">
+              <select class="form-select"
+                      [(ngModel)]="paysSelectionne"
+                      name="paysSelectionne"
+                      (change)="onFiltrer()">
+                <option value="">Tous les pays</option>
+                <option *ngFor="let p of paysDisponibles" [value]="p">{{ p }}</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Liste des établissements + Sidebar -->
+    <div class="row">
+      <!-- Établissements -->
+      <!-- Établissements -->
+      <div class="col-lg-8">
+        <div class="row courses_row">
+          <div class="col-lg-6 mb-4 wow fadeInUp" *ngFor="let eta of etablissements">
+            <div class="courses-item d-flex flex-column bg-light overflow-hidden">
+              <!-- Image + bouton "Je postule" -->
+              <div class="position-relative mt-auto">
+                <img class="img-fluid" [src]="eta.imageUrl" alt="">
+                <div class="courses-overlay">
+                  <a class="btn btn-outline-primary border-2" routerLink="/log">Je postule</a>
+                </div>
+              </div>
+
+              <!-- Contenu -->
+              <div class="p-4 pt-4">
+                <!-- Nom -->
+                <h5 class="mb-2">{{ eta.nom }}</h5>
+
+                <!-- Type + Pays -->
+                <p class="text-muted mb-1">
+                  <i class="fas fa-university me-2 text-primary"></i>{{ eta.type }}
+                </p>
+                <p class="text-muted mb-2">
+                  <i class="fas fa-map-marker-alt me-2 text-primary"></i>{{ eta.ville }}, {{ eta.pays }}
+                </p>
+
+                <!-- Description -->
+                <p>{{ eta.description }}</p>
+
+                <!-- Infos complémentaires -->
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                  <!--<div class="d-flex align-items-center">
+                    <i class="fas fa-user-graduate text-warning me-2"></i>
+                    <span class="text-muted">25 Students</span>
+                  </div>-->
+                  <!--<div class="d-flex align-items-center">
+                    <div class="me-2">
+                      <i class="fas fa-star text-warning" *ngFor="let s of [1,2,3,4,5]"></i>
+                    </div>
+                    <span class="text-muted">5</span>
+                  </div>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="bg-white rounded-3 shadow p-4 mt-5">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <ul class="pagination mb-3 mb-md-0">
+              <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+            </ul>
+            <div class="d-flex align-items-center">
+              <span class="text-muted me-2">Affichage 1-4 sur 12 résultats :</span>
+              <select class="form-select form-select-sm w-auto">
+                <option>4</option>
+                <option>8</option>
+                <option>12</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-4">
+        <div class="bg-white rounded-3 shadow p-4">
+          <h5 class="mb-3 pb-2 border-bottom border-2 border-primary">Types d'établissements</h5>
+          <ul class="list-unstyled mb-5">
+            <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Universités Publiques</a></li>
+            <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Universités Privées</a></li>
+          </ul>
+
+          <h5 class="mb-3 pb-2 border-bottom border-2 border-primary">Universités populaires</h5>
+          <div class="d-flex mb-4">
+            <img src="img/Universite-de-Fes.jpg" alt="" class="img-thumbnail me-3" style="width: 80px; height: 80px;">
+            <div>
+              <a href="#" class="text-dark d-block">UNIVERSITÉ PRIVÉE DE FÈS</a>
+              <div class="text-primary">Fès, Maroc</div>
+            </div>
+          </div>
+
+          <h5 class="mb-3 pb-2 border-bottom border-2 border-primary">Mots-clés</h5>
+          <div class="d-flex flex-wrap mb-4">
+            <a href="#" class="btn btn-sm btn-outline-secondary me-2 mb-2">Bourses d'études</a>
+            <a href="#" class="btn btn-sm btn-outline-secondary me-2 mb-2">Mobilité étudiante</a>
+            <a href="#" class="btn btn-sm btn-outline-secondary me-2 mb-2">Admission</a>
+            <a href="#" class="btn btn-sm btn-outline-secondary me-2 mb-2">Coopération</a>
+            <a href="#" class="btn btn-sm btn-outline-secondary me-2 mb-2">Formation</a>
+            <a href="#" class="btn btn-sm btn-outline-secondary me-2 mb-2">Partenariat</a>
+            <a href="#" class="btn btn-sm btn-outline-secondary me-2 mb-2">Excellence</a>
+            <a href="#" class="btn btn-sm btn-outline-secondary me-2 mb-2">Diplôme</a>
+          </div>
+
+          <div class="text-center bg-primary text-white p-4 rounded">
+            <h4>Guide Campus Afrique</h4>
+            <p>Votre guide complet pour étudier en Afrique</p>
+            <a href="#" class="btn btn-light mt-2">Télécharger gratuitement</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- fin de .container -->
+</div>
+<!-- Courses End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+<!-- Footer - s'affiche conditionnellement -->
+<app-footer></app-footer>

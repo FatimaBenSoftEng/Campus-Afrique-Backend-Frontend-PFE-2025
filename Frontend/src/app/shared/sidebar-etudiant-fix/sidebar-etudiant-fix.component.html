@@ -1,0 +1,88 @@
+<aside class="sidebar-vertical">
+  <!-- HEADER -->
+  <div class="sidebar-header">
+    <img src="img/logov3.png" alt="Campus Afrique" class="sidebar-logo" />
+    <span class="sidebar-title-logo">Campus Afrique</span>
+  </div>
+
+  <!-- MENU -->
+  <nav class="sidebar-menu">
+
+    <!-- TABLEAU DE BORD -->
+    <div class="menu-section">
+      <div class="section-title">TABLEAU DE BORD</div>
+      <a class="menu-item" routerLink="/tableau-de-bord">
+        <i class="fas fa-home"></i>Tableau de bord
+      </a>
+    </div>
+
+    <!-- MON PROFIL -->
+    <div class="menu-section">
+      <div class="section-title">MON PROFIL</div>
+      <a class="menu-item" routerLink="/formulaire-profil">
+        <i class="fas fa-user-edit"></i>Mon profil
+      </a>
+    </div>
+
+    <!-- ÉTABLISSEMENTS -->
+    <div class="menu-section">
+      <div class="section-title">ÉTABLISSEMENTS</div>
+      <a class="menu-item" routerLink="/list-etablissement">
+        <i class="fas fa-university"></i>Liste des établissements
+      </a>
+      <a class="menu-item" routerLink="/favoris">
+        <i class="fas fa-heart"></i>Établissements favoris
+      </a>
+    </div>
+
+    <!-- MES DEMANDES -->
+    <div class="menu-section">
+      <div class="section-title">MES DEMANDES</div>
+      <div class="dropdown">
+        <a href="javascript:void(0)" (click)="toggleDemandes()">
+          <i class="fas fa-file-alt"></i>
+          Demandes administratives
+          <i class="fas fa-chevron-down" style="margin-left:auto;"></i>
+        </a>
+        <div class="dropdown-list" *ngIf="menuDemandesOuvertes">
+          <a class="dropdown-item" routerLink="/formulaire-bourse" routerLinkActive="active-submenu">Demande de bourse</a>
+          <a class="dropdown-item" routerLink="/formulaire-visa" routerLinkActive="active-submenu">Demande de visa</a>
+          <a class="dropdown-item" routerLink="/formulaire-hebergement" routerLinkActive="active-submenu">Demande d'hébergement</a>
+          <a class="dropdown-item" routerLink="/formulaire-transport" routerLinkActive="active-submenu">Demande de transport</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CANDIDATURE -->
+    <div class="menu-section">
+      <div class="section-title">SUIVI DES DEMANDES</div>
+      <div class="dropdown">
+        <a href="javascript:void(0)" (click)="toggleCandidature()">
+          <i class="fas fa-file-alt"></i>
+          Suivi de mes demandes
+          <i class="fas fa-chevron-down" style="margin-left:auto;"></i>
+        </a>
+        <div class="dropdown-list" *ngIf="menuCandidatureOuvertes">
+          <a class="dropdown-item" routerLink="/etat-demande" routerLinkActive="active-submenu">Préinscription</a>
+          <a class="dropdown-item" routerLink="/etat-demande-bourse" routerLinkActive="active-submenu">Bourse</a>
+          <a class="dropdown-item" routerLink="/etat-demande-visa" routerLinkActive="active-submenu">Visa</a>
+          <a class="dropdown-item" routerLink="/etat-demande-hebergement" routerLinkActive="active-submenu">Hébergement</a>
+          <a class="dropdown-item" routerLink="/etat-demande-transport" routerLinkActive="active-submenu">Transport</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MES DOCUMENTS -->
+    <div class="menu-section">
+      <div class="section-title">MES DOCUMENTS</div>
+      <a class="menu-item" routerLink="/documents">
+        <i class="fas fa-folder-open"></i>Mes documents
+      </a>
+    </div>
+
+    <!-- DÉCONNEXION -->
+    <a class="logout-item" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>Déconnexion
+    </a>
+  </nav>
+</aside>

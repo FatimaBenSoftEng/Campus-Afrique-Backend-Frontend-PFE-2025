@@ -1,0 +1,20 @@
+<div class="mini-calendar">
+  <div class="calendar-header">
+    <button (click)="prevMonth()">&lt;</button>
+    <span>{{ currentYear }} - {{ (currentMonth + 1) | number:'2.0' }}</span>
+    <button (click)="nextMonth()">&gt;</button>
+  </div>
+  <div class="calendar-grid">
+    <div class="calendar-day calendar-day-label" *ngFor="let d of ['D','L','M','M','J','V','S']">{{ d }}</div>
+    <ng-container *ngFor="let day of calendarMatrix; let i = index">
+      <div
+        class="calendar-day"
+        [class.today]="day && day.getDate() === today.getDate() && day.getMonth() === today.getMonth() && day.getFullYear() === today.getFullYear()"
+        [class.event-day]="day && isEventDay(day)"
+        (click)="selectDay(day)">
+        {{ day ? day.getDate() : '' }}
+        <span *ngIf="day && isEventDay(day)" class="event-dot"></span>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="app-layout">
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+  <div class="main-content-area">
+    <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+
+    <div class="content-wrapper">
+      <h1 class="page-title">Statut hébergement</h1>
+
+      <div class="etat-demande-container">
+        <table class="etat-demande-table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Type d’hébergement</th>
+            <th>Ville</th>
+            <th>Date de soumission</th>
+            <th>Statut</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let demande of demandes">
+            <td>{{ demande.id }}</td>
+            <td>{{ demande.typeHebergement }}</td>
+            <td>{{ demande.ville }}</td>
+            <td>{{ demande.dateDemande | date:'dd MMMM yyyy' }}</td>
+            <td>
+                <span class="etat-badge" [ngClass]="demande.statut?.toLowerCase()">
+                  {{ demande.statut?.toLowerCase() }}
+                </span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <app-footer-etudiant></app-footer-etudiant>
+</div>

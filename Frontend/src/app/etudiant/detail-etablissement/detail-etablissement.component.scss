@@ -1,0 +1,143 @@
+@use '../../../styles/layout-etudiant' as *;
+
+.detail-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  color: #0C2B4B;
+  animation: fadeIn 0.5s ease-in-out;
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+
+    .logo {
+      width: 160px;
+      height: 160px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 3px solid #F3BD00;
+      background: #fff;
+      padding: 8px;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    .info {
+      h2 {
+        font-size: 28px;
+        margin-bottom: 6px;
+        color: #0C2B4B;
+      }
+
+      h4 {
+        font-size: 18px;
+        margin: 4px 0;
+        color: #444;
+      }
+
+      .badge {
+        display: inline-block;
+        background-color: #F3BD00;
+        color: #0C2B4B;
+        font-weight: bold;
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-left: 5px solid #F3BD00;
+    background: #f9f9f9;
+    border-radius: 10px;
+
+    h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #0C2B4B;
+      position: relative;
+      padding-left: 24px;
+
+      &::before {
+        content: '➤';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #F3BD00;
+        font-size: 1.1rem;
+      }
+    }
+
+    p, li {
+      font-size: 16px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .text-success {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .text-danger {
+      color: #dc3545;
+      font-weight: bold;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+
+    .btn {
+      background-color: #ffc107; // Bouton postuler inchangé
+      color: #fff;
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      font-weight: 600;
+      border: none;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #002244;
+      }
+    }
+  }
+
+  a {
+    color: #0C2B4B;
+    text-decoration: underline;
+
+    &:hover {
+      color: darken(#0C2B4B, 10%);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

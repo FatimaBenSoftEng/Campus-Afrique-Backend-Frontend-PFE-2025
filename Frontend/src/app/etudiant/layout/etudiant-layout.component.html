@@ -1,0 +1,13 @@
+<div class="app-layout">
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+  <div class="main-content">
+    <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+
+    <app-footer-etudiant></app-footer-etudiant>
+  </div>
+</div>

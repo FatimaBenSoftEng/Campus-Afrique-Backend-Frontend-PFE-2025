@@ -1,0 +1,42 @@
+<div class="app-layout">
+  <!-- Sidebar -->
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+  <div class="main-content-area">
+    <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+    <div class="content-wrapper">
+      <h1 class="page-title">Mes documents</h1>
+
+      <!-- Onglets -->
+      <div class="tabs">
+        <button [class.active]="activeTab === 'uploads'" (click)="switchTab('uploads')">Documents uploadés</button>
+        <button [class.active]="activeTab === 'attestations'" (click)="switchTab('attestations')">Attestations téléchargées</button>
+      </div>
+
+      <!-- Uploadés -->
+      <div *ngIf="activeTab === 'uploads'" class="doc-list">
+        <div *ngFor="let doc of documentsUploades" class="doc-card">
+          <div class="doc-info">
+            <h3>{{ doc.nom }}</h3>
+            <p class="doc-date">{{ doc.dateAjout }}</p>
+          </div>
+          <button class="btn-voir" (click)="telecharger(doc)">Voir</button>
+        </div>
+      </div>
+
+      <!-- Attestations -->
+      <div *ngIf="activeTab === 'attestations'" class="doc-list">
+        <div *ngFor="let att of attestations" class="doc-card">
+          <div class="doc-info">
+            <h3>{{ att.nom }}</h3>
+            <p class="doc-date">{{ att.dateAjout }}</p>
+          </div>
+          <button class="btn-telecharger" (click)="telecharger(att)">Télécharger</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <app-footer-etudiant></app-footer-etudiant>
+</div>

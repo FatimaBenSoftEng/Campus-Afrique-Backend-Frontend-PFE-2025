@@ -1,0 +1,52 @@
+<div class="app-layout">
+  <!-- Sidebar -->
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+  <!-- Contenu principal -->
+  <div class="main-content-area">
+    <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+
+    <!-- Contenu -->
+    <div class="etat-demande-container">
+      <h1 class="page-title">Statut préinscription</h1>
+
+      <div *ngIf="preinscriptions.length === 0" class="alert alert-info mt-4">
+        Aucune demande enregistrée.
+      </div>
+
+      <table *ngIf="preinscriptions.length > 0" class="etat-demande-table mt-3">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Établissement</th>
+          <th>Formation</th>
+          <th>Date de demande</th>
+          <th>Statut</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let demande of preinscriptions; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ demande.etablissementNom || '---' }}</td>
+          <td>{{ demande.choixFormation }}</td>
+          <td>{{ demande.datePreInscription | date: 'dd/MM/yyyy' }}</td>
+          <td>
+              <span class="etat-badge"
+                    [ngClass]="{
+                      'validee': demande.statut === 'VALIDEE',
+                      'en_attente': demande.statut === 'EN_ATTENTE',
+                      'refusee': demande.statut === 'REFUSEE',
+                      'complement': demande.statut === 'COMPLEMENT'
+                    }">
+                {{ demande.statut }}
+              </span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <app-footer-etudiant></app-footer-etudiant>
+</div>

@@ -1,0 +1,50 @@
+<!-- Sidebar gauche -->
+<app-slidebar-etablissement-fix *ngIf="sidebarVisible"></app-slidebar-etablissement-fix>
+
+<!-- Contenu principal -->
+<div class="main-content-area" style="margin-top: 0 !important; padding-top: 0 !important;">
+
+  <!-- Navbar -->
+  <app-navbar-etablissement (toggleGauche)="toggleSidebar()"></app-navbar-etablissement>
+  <div class="content-wrapper">
+    <!-- Titre -->
+    <h1 class="page-title">Ajouter Formation</h1>
+    <form autocomplete="off" class="profil-form">
+
+      <!-- Informations générales de la formation -->
+      <div class="form-section">
+        <div class="form-group">
+          <label class="required">Nom de la formation</label>
+          <input type="text" name="nom" required>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea name="description"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Durée (en années)</label>
+          <input type="number" name="duree" min="1" required>
+        </div>
+
+        <div class="form-group">
+          <label class="required">Frais annuel</label>
+          <input type="number" name="frais_annuel" min="0" required>
+        </div>
+
+      </div>
+
+      <!-- Bouton -->
+      <div class="form-actions">
+        <div class="form-submit-container">
+          <button type="submit" class="btn btn-jaune">Enregistrer la formation</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<app-footer-etablissement></app-footer-etablissement>

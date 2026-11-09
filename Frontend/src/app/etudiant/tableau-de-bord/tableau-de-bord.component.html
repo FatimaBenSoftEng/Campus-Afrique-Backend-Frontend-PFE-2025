@@ -1,0 +1,102 @@
+<!-- Sidebar gauche -->
+<app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+<!-- Contenu principal -->
+<div class="main-content-area">
+  <!-- Navbar -->
+  <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+
+  <div class="content-wrapper">
+    <!-- Titre et bienvenue -->
+    <h1 class="page-title">Tableau de Bord</h1>
+    <h2 class="welcome-msg">👋 Bienvenue {{ nomComplet }}</h2>
+
+    <div class="dashboard-etudiant">
+
+      <!-- Statistiques principales -->
+      <div class="dashboard-cards">
+        <div class="stat-card">
+          <i class="fas fa-file-alt card-icon"></i>
+          <div>
+            <div class="stat-value">{{ stats.totalCandidatures }}</div>
+            <div class="stat-label">Demandes totales</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-hourglass-half card-icon"></i>
+          <div>
+            <div class="stat-value">{{ stats.enAttente }}</div>
+            <div class="stat-label">En attente</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-graduation-cap card-icon"></i>
+          <div>
+            <div class="stat-value">{{ stats.totalBourses }}</div>
+            <div class="stat-label">Bourses envoyées</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-bus card-icon"></i> <!-- ✅ Icône transport -->
+          <div>
+            <div class="stat-value">{{ stats.totalTransports || 0 }}</div>
+            <div class="stat-label">Transport envoyés</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graphiques -->
+      <div class="dashboard-graphs" *ngIf="isBrowser">
+        <!-- Pie Chart -->
+        <div class="graph-card">
+          <h4>Répartition des statuts des candidatures</h4>
+          <canvas baseChart [data]="pieChartData" [type]="'pie'" [options]="pieChartOptions"></canvas>
+        </div>
+
+        <!-- Bar Chart -->
+        <div class="graph-card">
+          <h4>Demandes par type</h4>
+          <canvas baseChart [data]="barChartData" [type]="'bar'" [options]="barChartOptions"></canvas>
+        </div>
+
+        <!-- Stacked Bar Chart -->
+        <div class="graph-card">
+          <h4>Statuts par type de demande</h4>
+          <canvas baseChart [data]="stackedChartData" [type]="'bar'" [options]="stackedChartOptions"></canvas>
+        </div>
+      </div>
+
+      <!-- Dates importantes -->
+      <div class="important-dates">
+        <h4>📅 Dates importantes</h4>
+        <ul>
+          <li *ngFor="let d of datesImportantes">
+            <strong>{{ d.date | date:'dd/MM/yyyy' }}</strong> – {{ d.titre }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Derniers documents -->
+      <div class="dashboard-downloads">
+        <h4>📁 Derniers documents</h4>
+        <ul>
+          <li *ngFor="let doc of documents">
+            <i class="fas fa-file-alt"></i>
+            {{ doc.label }}
+            <span class="download-count">({{ doc.count }})</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Raccourci recherche -->
+      <div class="quick-access">
+        <button class="btn btn-primary" routerLink="/list-etablissement">
+          🔍 Rechercher un programme
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<app-footer-etudiant></app-footer-etudiant>

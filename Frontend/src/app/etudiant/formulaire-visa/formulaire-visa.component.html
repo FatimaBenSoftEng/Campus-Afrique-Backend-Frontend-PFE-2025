@@ -1,0 +1,171 @@
+<!-- ================================
+     FORMULAIRE VISA ÉTUDIANT
+================================ -->
+
+<div class="app-layout">
+  <!-- Sidebar gauche -->
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+  <!-- Contenu principal -->
+  <div class="main-content-area">
+    <!-- Navbar avec bouton toggle -->
+    <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+    <div class="content-wrapper">
+    <!--  <nav class="breadcrumb-bar">
+        <a class="breadcrumb-item" routerLink="/tableau-de-bord">Tableau de bord</a>
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-item active" routerLink="/formulaire-visa">Demande de visa</a>
+      </nav>-->
+      <h1 class="page-title">Demande de visa </h1>
+      <form class="visa-form" (ngSubmit)="onSubmit(visaForm)" #visaForm="ngForm" autocomplete="off">
+        <!-- 1. Informations personnelles -->
+        <div class="form-section">
+          <h3>Informations Personnelles</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="required">Nom</label>
+              <input type="text" name="nom" [(ngModel)]="form.nom" disabled />
+            </div>
+            <div class="form-group">
+              <label class="required">Prénom</label>
+              <input type="text" name="prenom" [(ngModel)]="form.prenom" disabled />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="required">Nationalité</label>
+              <input type="text" name="nationalite" [(ngModel)]="form.nationalite" disabled />
+            </div>
+            <div class="form-group">
+              <label class="required">Sexe / Genre</label>
+              <input type="text" name="sexe" [(ngModel)]="form.sexe" disabled />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="required">Email</label>
+              <input type="email" name="email" [(ngModel)]="form.email" required />
+            </div>
+            <div class="form-group">
+              <label class="required">Téléphone</label>
+              <input type="tel" name="telephone" [(ngModel)]="form.telephone" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="required">Passeport ou CIN</label>
+            <input type="text" name="identite" [(ngModel)]="form.identite" disabled />
+          </div>
+        </div>
+
+        <!-- 2. Informations sur le séjour d’études -->
+        <div class="form-section">
+          <h3>Séjour d’Études</h3>
+          <div class="form-group">
+            <label class="required">Ambassade concernée</label>
+            <select name="ambassade" [(ngModel)]="form.ambassadeId" required>
+              <option value="">-- Sélectionner une ambassade --</option>
+              <option *ngFor="let agent of ambassades" [value]="agent.id">
+                {{ agent.nom }} ({{ agent.paysResponsable }})
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="required">Pays d’accueil</label>
+            <input type="text" name="paysDestination" [(ngModel)]="form.paysDestination" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Ville du séjour</label>
+              <input type="text" name="ville" [(ngModel)]="form.ville" />
+            </div>
+            <div class="form-group">
+              <label class="required">Établissement d’accueil</label>
+              <input type="text" name="etablissement" [(ngModel)]="form.etablissement" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="required">Date de début de séjour</label>
+              <input type="date" name="dateDepart" [(ngModel)]="form.dateDepart" required />
+            </div>
+            <div class="form-group">
+              <label class="required">Durée des études</label>
+              <input type="text" name="duree" [(ngModel)]="form.duree" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Adresse prévue (logement)</label>
+            <input type="text" name="adresse" [(ngModel)]="form.adresse" />
+          </div>
+        </div>
+
+        <!-- 3. Informations sur le garant -->
+        <div class="form-section">
+          <h3>Informations sur le Garant</h3>
+          <div class="form-group">
+            <label class="required">Nom complet du garant</label>
+            <input type="text" name="nomGarant" [(ngModel)]="form.nomGarant" required />
+          </div>
+          <div class="form-group">
+            <label class="required">Lien avec l’étudiant</label>
+            <select name="lien" [(ngModel)]="form.lien" required>
+              <option value="">Sélectionnez</option>
+              <option value="pere">Père</option>
+              <option value="mere">Mère</option>
+              <option value="oncle">Oncle</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="required">Adresse du garant</label>
+            <input type="text" name="adresseGarant" [(ngModel)]="form.adresseGarant" required />
+          </div>
+          <div class="form-group">
+            <label class="required">Téléphone du garant</label>
+            <input type="tel" name="telephoneGarant" [(ngModel)]="form.telephoneGarant" required />
+          </div>
+          <div class="form-group">
+            <label>Profession du garant</label>
+            <input type="text" name="professionGarant" [(ngModel)]="form.professionGarant" />
+          </div>
+          <div class="form-group">
+            <label>Revenu mensuel approximatif</label>
+            <input type="number" name="revenu" [(ngModel)]="form.revenu" min="0" />
+          </div>
+        </div>
+
+        <!-- 4. Documents à uploader -->
+        <div class="form-section">
+          <h3>Documents Requis</h3>
+          <ul>
+            <li>Attestation d’inscription</li>
+            <li>Lettre d’admission</li>
+            <li>Copie passeport ou CIN</li>
+            <li>Extrait / Acte de naissance</li>
+            <li>Justificatif de ressources du garant</li>
+            <li>Certificat médical (facultatif)</li>
+            <li>Photo d’identité</li>
+          </ul>
+          <!-- Liste des fichiers uploadés -->
+          <h5 class="mt-3">Fichiers sélectionnés :</h5>
+          <input type="file" multiple (change)="uploadDocuments($event)" hidden #fileInput />
+          <button type="button" (click)="fileInput.click()" class="btn btn-outline-primary">+ Ajouter un document</button>
+
+          <ul class="mt-3" *ngIf="documents.length > 0">
+            <li *ngFor="let doc of documents">
+              {{ doc.name }} <button type="button" (click)="supprimerDocument(doc)">Supprimer</button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Bouton d’envoi -->
+        <div class="form-submit-container">
+          <button type="submit" class="btn btn-jaune">Soumettre la demande</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Footer -->
+  <app-footer-etudiant></app-footer-etudiant>
+</div>

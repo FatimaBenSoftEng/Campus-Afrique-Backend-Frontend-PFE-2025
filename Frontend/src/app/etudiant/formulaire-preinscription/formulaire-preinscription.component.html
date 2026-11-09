@@ -1,0 +1,180 @@
+<!-- ================================
+     FORMULAIRE DE PRÉINSCRIPTION
+================================ -->
+<div class="app-layout">
+  <!-- Sidebar gauche -->
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+  <!-- Contenu principal -->
+  <div class="main-content-area">
+    <!-- Navbar avec bouton toggle -->
+    <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+
+    <div class="content-wrapper">
+      <!-- Titre -->
+      <h1 class="page-title">Demande de préinscription</h1>
+
+      <!-- Etablissement sélectionné -->
+      <div *ngIf="form.etablissementNom" class="etablissement-selectionne">
+        <p><strong>Établissement sélectionné :</strong> {{ form.etablissementNom }}</p>
+      </div>
+
+      <!-- Formulaire -->
+      <form class="preinscription-form" (ngSubmit)="onSubmit(preinscriptionForm)" #preinscriptionForm="ngForm" autocomplete="off">
+        <!-- Informations Personnelles -->
+        <div class="form-section">
+          <h3>Informations Personnelles</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="required">Nom</label>
+              <input type="text" name="nom" [(ngModel)]="form.nom" disabled />
+            </div>
+            <div class="form-group">
+              <label class="required">Prénom</label>
+              <input type="text" name="prenom" [(ngModel)]="form.prenom" disabled />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="required">Genre</label>
+              <input type="text" name="genre" [(ngModel)]="form.genre" disabled />
+            </div>
+            <div class="form-group">
+              <label class="required">Date de naissance</label>
+              <input type="date" name="dateNaissance" [(ngModel)]="form.dateNaissance" disabled />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="required">Nationalité</label>
+            <input type="text" name="nationalite" [(ngModel)]="form.nationalite" disabled />
+          </div>
+
+          <div class="form-group">
+            <label class="required">Pays de résidence</label>
+            <input type="text" name="paysResidence" [(ngModel)]="form.paysResidence" required />
+          </div>
+
+          <div class="form-group">
+            <label class="required">Adresse complète</label>
+            <input type="text" name="adresse" [(ngModel)]="form.adresse" required />
+          </div>
+
+          <div class="form-group">
+            <label class="required">Email</label>
+            <input type="email" name="email" [(ngModel)]="form.email" required />
+          </div>
+
+          <div class="form-group">
+            <label class="required">Téléphone</label>
+            <input type="tel" name="telephone" [(ngModel)]="form.telephone" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="required">Type de pièce d’identité</label>
+              <select name="typePiece" [(ngModel)]="form.typePiece" required>
+                <option value="">Sélectionnez</option>
+                <option value="CIN">CIN</option>
+                <option value="Passeport">Passeport</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="required">Numéro de pièce</label>
+              <input type="text" name="numeroPiece" [(ngModel)]="form.numeroPiece" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Numéro d’étudiant / Matricule</label>
+            <input type="text" name="matricule" [(ngModel)]="form.matricule" />
+          </div>
+        </div>
+
+        <!-- Informations Académiques -->
+        <div class="form-section">
+          <h3>Informations Académiques</h3>
+
+          <div class="form-group">
+            <label class="required">Dernier diplôme obtenu</label>
+            <input type="text" name="dernierDiplome" [(ngModel)]="form.dernierDiplome" required />
+          </div>
+
+          <div class="form-group">
+            <label class="required">Spécialité</label>
+            <input type="text" name="specialite" [(ngModel)]="form.specialite" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="required">Année d’obtention</label>
+              <input type="date" name="anneeObtention" [(ngModel)]="form.anneeObtention" required>
+            </div><!--
+            <div class="form-group">
+              <label class="required">Pays d’obtention</label>
+              <input type="text" name="paysObtention" [(ngModel)]="form.paysObtention" required />
+            </div>-->
+          </div>
+
+          <div class="form-group">
+            <label>Moyenne générale</label>
+            <input type="number" step="0.01" name="moyenne" [(ngModel)]="form.moyenne" />
+          </div>
+        </div>
+
+        <!-- Choix du Formation -->
+        <div class="form-section">
+          <h3>Choix du Formation</h3>
+
+          <div class="form-group">
+            <label>Établissement sélectionné</label>
+            <input type="text" [(ngModel)]="form.etablissementNom" name="etablissementNom" disabled>
+          </div>
+
+          <div class="form-group">
+            <label class="required">Formation</label>
+            <select [(ngModel)]="form.formationId" name="formationId" required>
+              <option value="">Sélectionnez une Formation</option>
+              <option *ngFor="let f of filieres" [value]="f.id">{{ f.nom }}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Pièces Jointes dynamiques -->
+        <div class="form-section">
+          <h3>Documents Requis</h3>
+          <ul>
+            <li>Relevés de notes</li>
+            <li>Diplôme obtenu</li>
+            <li>Lettre de motivation</li>
+            <li>Scan de pièce d'identité</li>
+          </ul>
+
+          <!-- Liste des fichiers uploadés -->
+          <h5 class="mt-3">Fichiers sélectionnés :</h5>
+          <input type="file" multiple (change)="uploadDocuments($event)" hidden #fileInput />
+          <button type="button" class="btn btn-outline-primary" (click)="fileInput.click()">+ Ajouter un document</button>
+          <ul class="mt-3" *ngIf="documents.length > 0">
+            <li *ngFor="let doc of documents">
+              {{ doc.name }}
+              <button type="button" (click)="supprimerDocument(doc)">Supprimer</button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Champs masqués pour ID établissement -->
+        <input type="hidden" name="etablissementId" [(ngModel)]="form.etablissementId" />
+
+        <!-- Bouton de soumission -->
+        <div class="form-submit-container">
+          <button type="submit" class="btn btn-jaune">Soumettre la demande</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <app-footer-etudiant></app-footer-etudiant>
+</div>

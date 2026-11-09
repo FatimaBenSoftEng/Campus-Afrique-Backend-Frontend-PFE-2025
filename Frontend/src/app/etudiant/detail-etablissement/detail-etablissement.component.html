@@ -1,0 +1,128 @@
+<div class="app-layout">
+  <app-sidebar-etudiant-fix *ngIf="sidebarVisible"></app-sidebar-etudiant-fix>
+
+  <div class="main-content-area">
+
+    <app-navbar-etudiant (toggleGauche)="toggleSidebar()"></app-navbar-etudiant>
+   <!-- <nav class="breadcrumb-bar">
+      <a class="breadcrumb-item" routerLink="/tableau-de-bord">Tableau de bord</a>
+      <span class="breadcrumb-separator">/</span>
+      <a class="breadcrumb-item active" routerLink="/list-etablissement">Liste des établissements</a>
+    </nav>-->
+
+    <div class="detail-container" *ngIf="etablissement">
+      <h1 class="page-title">Fiche détaillée de l’établissement</h1>
+      <!-- En-tête -->
+      <div class="header">
+        <img [src]="etablissement.imageUrl" alt="Logo" class="logo">
+        <div class="info">
+          <h2>{{ etablissement.nom }}</h2>
+          <h4 style="color:#F3BD00;">{{ etablissement.nomAbr }}</h4>
+          <span class="badge">{{ etablissement.type }}</span>
+        </div>
+      </div>
+
+      <!-- Ville / Pays / Date création -->
+      <div class="section">
+        <h3>Informations générales</h3>
+        <p><i class="fas fa-map-marker-alt icon"></i> <strong>Ville :</strong> {{ etablissement.ville }}</p>
+        <p><i class="fas fa-globe icon"></i> <strong>Pays :</strong> {{ etablissement.pays }}</p>
+        <p>
+          <i class="fas fa-calendar-alt icon"></i>
+          <strong>Date de création :</strong> {{ etablissement.dateCreation }}
+          <br>
+          <small class="text-muted">
+            ({{ getAncienneteMessage() }} - {{ getAnciennete(etablissement.dateCreation || '') }}
+            ans)
+          </small>
+        </p>
+      </div>
+
+
+      <!-- Période de candidature -->
+      <div class="section" *ngIf="etablissement.dateDebutCandidature && etablissement.dateFinCandidature">
+        <h3>Période de candidature</h3>
+        <p>
+          Du <strong>{{ etablissement.dateDebutCandidature | date:'dd/MM/yyyy' }}</strong>
+          au <strong>{{ etablissement.dateFinCandidature | date:'dd/MM/yyyy' }}</strong>
+        </p>
+      </div>
+
+      <!-- Description -->
+      <div class="section">
+        <h3>Description</h3>
+        <p class="description-paragraph">{{ etablissement.description }}</p>
+      </div>
+
+      <!-- Diplôme et reconnaissance -->
+      <div class="section">
+        <h3>Diplôme et reconnaissance</h3>
+        <p><strong>Type de diplôme :</strong> {{ etablissement.typeDiplome }}</p>
+        <p *ngIf="etablissement.type === 'Public'">
+          <strong>Reconnaissance :</strong> Reconnu par l’État
+        </p>
+        <p *ngIf="etablissement.type === 'Privé'">
+          <strong>Reconnaissance :</strong> {{ etablissement.reconnaissanceEtat }}
+        </p>
+      </div>
+
+      <!-- Parcours -->
+      <div class="section" *ngIf="etablissement.parcours?.length">
+        <h3>Parcours d'études</h3>
+        <ul>
+          <li *ngFor="let cycle of etablissement.parcours">{{ cycle }}</li>
+        </ul>
+      </div>
+
+      <!-- Programmes -->
+      <div class="section" *ngIf="etablissement.formations?.length">
+        <h3>Formations proposées</h3>
+        <ul>
+          <li *ngFor="let f of etablissement.formations">
+            {{ f.nom }} – {{ f.duree }} an(s)
+          </li>
+        </ul>
+      </div>
+
+      <!-- Frais -->
+      <div class="section">
+        <h3>Frais de scolarité</h3>
+        <p *ngIf="etablissement.fraisScolariteMin && etablissement.fraisScolariteMax">
+          Frais annuels estimés : entre <strong>{{ etablissement.fraisScolariteMin }}</strong> et
+          <strong>{{ etablissement.fraisScolariteMax }}</strong> MAD
+        </p>
+        <div *ngIf="etablissement.formations?.length">
+          <p><strong>Détails :</strong></p>
+          <ul>
+            <li *ngFor="let f of etablissement.formations">
+              {{ f.nom }} : {{ f.fraisAnnuel }} MAD
+            </li>
+          </ul>
+        </div>
+        <p *ngIf="etablissement.bourseDisponible" class="text-success">
+          Possibilité de bourse disponible
+        </p>
+        <p *ngIf="!etablissement.bourseDisponible" class="text-danger">
+          Pas de bourses disponibles
+        </p>
+      </div>
+
+      <!-- Coordonnées -->
+      <div class="section">
+        <h3>Coordonnées</h3>
+        <p><strong>Email :</strong> {{ etablissement.email }}</p>
+        <p><strong>Téléphone :</strong> {{ etablissement.telephone }}</p>
+        <p><strong>Adresse :</strong> {{ etablissement.adresse }}</p>
+        <p><strong>Site Web :</strong> <a [href]="etablissement.siteWeb" target="_blank">{{ etablissement.siteWeb }}</a></p>
+      </div>
+
+      <!-- Postuler -->
+      <div class="btn-container">
+        <button (click)="postuler()" class="btn btn-primary">Postuler</button>
+      </div>
+    </div>
+
+  </div>
+  <!-- Footer -->
+  <app-footer-etudiant></app-footer-etudiant>
+</div>
